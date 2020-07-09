@@ -7,11 +7,32 @@
 </head>
 
 <body>
+
+    <p id="code"></p>
     <button id="user">Click for user</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
 
+        $.get("/code", function(data) {
 
+            $("#code").text(data);
+
+            var settings = {
+                "url": "https://cors-anywhere.herokuapp.com/https://zoom.us/oauth/token?grant_type=authorization_code&code="+data+"&redirect_uri=https://whispering-shore-04651.herokuapp.com/",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Authorization": "Basic UnljYzZ0Q3FSSTZPSTFYZUR1dzJXZzpSN2N3NHlYR3M1dkFEb1pNTFNaakQySzZQbWlQbWpPQQ=="
+                },
+                };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+
+            console.log("hi");
+            console.log(data);
+        })
 
       </script>
 
