@@ -9,9 +9,11 @@ app.use(express.json());
 
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
+    console.log(req.query.code);
+    return res.json(req.query.code);
 });
 
-app.get("/?code=:id", function(req,res) {
+app.get("/?:id", function(req,res) {
   console.log("req");
   console.log(req.params);
   return res.json(req.params);
