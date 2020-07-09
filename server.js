@@ -9,9 +9,13 @@ app.use(express.json());
 
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
-    console.log(req);
-    console.log(res);
 });
+
+app.get("/code=:id", function(req,res) {
+  console.log("req");
+  console.log(req.params);
+  return res.json(req.params);
+})
 
 app.listen(port, function() {
   console.log(`App Server is listening on PORT: ${port}`);
